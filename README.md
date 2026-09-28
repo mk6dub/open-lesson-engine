@@ -26,6 +26,27 @@ The project is being built with a simple belief:
 
 **Teachers should spend more time teaching and less time reinventing the wheel.**
 
+## How It Works
+
+Open Lesson Engine is **not** an AI lesson-plan generator. It is a framework of **reusable educational components**, such as objectives, activities, worksheets, assessments, differentiation strategies, and lesson templates. Teachers write and share these components as small, structured files:
+
+```yaml
+# An excerpt. See DEVELOPMENT.md for a complete component.
+id: floating-leaf-disks
+type: activity
+title: Floating leaf disks
+topics: [photosynthesis]
+grades: 7
+duration_minutes: 45
+difficulty: standard
+activity_type: hands_on
+standards: [NGSS:MS-LS1-6]
+```
+
+Components can be adapted into variants for different learners. They can also be **composed into complete lessons**, either by hand or by a transparent, rule-based composer that explains its choices. Everything works offline, without accounts, and without an AI service.
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for the full architecture and domain model.
+
 ---
 
 ## Who Is It For?
@@ -130,11 +151,13 @@ If your adaptation could benefit other educators, consider contributing it back 
 
 ## For Developers
 
+### Start here
+
+Read [DEVELOPMENT.md](DEVELOPMENT.md) for the architecture, technology stack (TypeScript on Node.js 22+), domain model, and MVP scope. The first ten implementation tasks are in [docs/roadmap/mvp-tasks.md](docs/roadmap/mvp-tasks.md), and major decisions are recorded in [docs/decisions/](docs/decisions/).
+
 ### Prerequisites
 
-The development environment and technical requirements are still being established as the project evolves.
-
-Once the initial application architecture is in place, this section will document:
+The project skeleton arrives with the first roadmap task. Once it is in place, this section will document:
 
 - Required software
 - Supported versions
@@ -228,7 +251,7 @@ Early contributors are encouraged to help shape the direction of the project.
 
 ### Foundation
 
-- [ ] Establish project architecture
+- [x] Establish project architecture (see [DEVELOPMENT.md](DEVELOPMENT.md))
 - [ ] Define lesson data model
 - [ ] Create initial development environment
 - [ ] Build core lesson structure
@@ -236,11 +259,11 @@ Early contributors are encouraged to help shape the direction of the project.
 
 ### Classroom Tools
 
-- [ ] Lesson generator
-- [ ] Worksheet generator
-- [ ] Assessment generator
-- [ ] Exit ticket generator
-- [ ] Answer key generation
+- [ ] Lesson composer (assemble lessons from reusable components)
+- [ ] Worksheet builder
+- [ ] Assessment builder
+- [ ] Exit ticket builder
+- [ ] Answer keys (rendered from worksheet and assessment data)
 - [ ] Differentiation tools
 - [ ] Printable exports
 
@@ -285,9 +308,12 @@ When sharing examples, use fictional or anonymized information.
 
 # License
 
-This project is open source.
+This project is open source and uses two licenses:
 
-See [`LICENSE`](LICENSE) for the full license.
+- **Educational content** in `library/` is licensed under [Creative Commons Attribution 4.0 (CC BY 4.0)](LICENSE-CONTENT). You may use, print, adapt, and share it for any purpose, with credit to its contributors.
+- **Software** (everything else) is licensed under the [MIT License](LICENSE).
+
+See [ADR 0003](docs/decisions/0003-licensing.md) for why these licenses were chosen.
 
 ---
 
